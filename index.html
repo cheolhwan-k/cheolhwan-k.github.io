@@ -1,17 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Cheolhwan Kim</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Georgia, serif;
+      margin: 0;
+      background: #fdfdfd;
+      color: #333;
+      display: flex;
+    }
+    nav {
+      width: 220px;
+      background: #eee;
+      padding: 40px 20px;
+      height: 100vh;
+      box-sizing: border-box;
+      position: fixed;
+    }
+    nav h2 {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    nav img {
+      width: 100%;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+    nav a {
+      display: block;
+      margin-bottom: 12px;
+      text-decoration: none;
+      color: #333;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      margin-left: 240px;
+      padding: 40px;
+      max-width: 700px;
+    }
+    h1, h2 {
+      margin-top: 40px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Cheolhwan Kim</h1>
-  <p>PhD Student in Economics</p>
-  <p><a href="cv.pdf">Download CV</a></p>
-  <h2>Research Papers</h2>
-  <ul>
-    <li><a href="paper1.pdf">Paper Title 1</a></li>
-    <li><a href="paper2.pdf">Paper Title 2</a></li>
-  </ul>
+  <nav>
+    <h2>Cheolhwan Kim</h2>
+    <img src="profile.jpg" alt="Cheolhwan Kim">
+    <a href="#bio">Bio</a>
+    <a href="#cv">CV</a>
+<!--    <a href="#research">Research</a> -->
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <main>
+    <section id="bio">
+      <h1>Bio</h1>
+      <p>I am a PhD student in Economics at Yale University. My research focuses on environmental and spatial economics.</p>
+    </section>
+
+    <section id="cv">
+      <h1>CV</h1>
+      <p><a href="cv.pdf" target="_blank">Download my CV (PDF)</a></p>
+    </section>
+<!--
+    <section id="research">
+      <h1>Research</h1>
+      <ul>
+        <li><strong>“Paper Title 1”</strong> – [short description or coauthors]</li>
+        <li><strong>“Paper Title 2”</strong> – [short description or coauthors]</li>
+      </ul>
+    </section>
+-->
+    <section id="contact">
+      <h1>Contact</h1>
+      <p>Email: cheolhwan.kim@yale.edu</p>
+<!--      <p><a href="https://scholar.google.com">Google Scholar</a> |
+         <a href="https://github.com/cheolhwan-k">GitHub</a></p>-->
+    </section>
+  </main>
 </body>
 </html>
