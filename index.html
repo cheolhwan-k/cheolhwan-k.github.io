@@ -5,17 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Cheolhwan Kim</title>
   <meta name="description" content="Cheolhwan Kim — PhD Candidate in Economics at Yale University" />
-  <!-- 1) New font (Inter) like the reference sites -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#ffffff; --fg:#111111; --muted:#666; --link:#0a5; --card:#f7f7f7; --border:#e6e6e6;
-    }
-    :root.dark{
-      --bg:#0b0b0b; --fg:#f1f1f1; --muted:#b8b8b8; --link:#69f0ae; --card:#121212; --border:#1f1f1f;
-    }
+    :root{ --bg:#ffffff; --fg:#111111; --muted:#666; --link:#0a5; --card:#f7f7f7; --border:#e6e6e6; }
+    :root.dark{ --bg:#0b0b0b; --fg:#f1f1f1; --muted:#b8b8b8; --link:#69f0ae; --card:#121212; --border:#1f1f1f; }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{margin:0; background:var(--bg); color:var(--fg);
@@ -25,13 +20,12 @@
     a{color:var(--link); text-decoration:none}
     a:hover{text-decoration:underline}
 
-    /* 2) New layout: top header instead of fixed sidebar */
     .wrap{max-width:880px; margin:0 auto; padding:28px 20px 80px}
-    header{display:flex; align-items:center; justify-content:space-between; gap:18px; margin-bottom:18px}
-    .brand{display:flex; align-items:center; gap:14px}
-    .avatar{width:68px; height:68px; border-radius:50%; object-fit:cover; border:1px solid var(--border); background:var(--card)}
+    header{display:flex; align-items:flex-start; justify-content:space-between; gap:18px; margin-bottom:18px}
+    .brand{display:flex; align-items:flex-start; gap:16px}
+    .avatar{width:96px; height:96px; border-radius:50%; object-fit:cover; border:1px solid var(--border); background:var(--card)}
     h1{font-size:28px; line-height:1.1; margin:0}
-    .tag{color:var(--muted); font-weight:500}
+    .tag{color:var(--muted); font-weight:500; line-height:1.35}
 
     nav{display:flex; gap:12px; flex-wrap:wrap}
     nav a{padding:6px 10px; border-radius:10px; border:1px solid var(--border); background:var(--card)}
@@ -49,19 +43,18 @@
 
     @media (max-width:760px){
       .brand{align-items:flex-start}
-      .avatar{width:56px; height:56px}
+      .avatar{width:72px; height:72px}
     }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <!-- 3) Header replaces your left sidebar -->
     <header>
       <div class="brand">
         <img class="avatar" src="profile.jpg" alt="Cheolhwan Kim" />
         <div>
           <h1>Cheolhwan Kim</h1>
-          <div class="tag">PhD Candidate in Economics · Yale University</div>
+          <div class="tag">PhD Candidate in Economics<br>Yale University</div>
         </div>
       </div>
       <div class="flex">
@@ -75,7 +68,6 @@
       </div>
     </header>
 
-    <!-- 4) Your content, restyled -->
     <main>
       <section id="bio" class="card">
         <h2>About</h2>
@@ -85,21 +77,24 @@
       <section id="cv" class="card">
         <h2>CV</h2>
         <p>Download my latest CV here: <a href="cv.pdf" target="_blank" rel="noopener">CV.pdf</a></p>
-        <p class="lead" style="margin-top:8px">Place your file at <code>./cv.pdf</code> in your repo.</p>
       </section>
 
       <section id="research" class="card">
         <h2>Research</h2>
         <ul>
-          <li><strong>The Spatial Consequences of Industrial Environmental Regulation</strong> — Job Market Paper (link to paper / slides)</li>
-          <li><strong>Deep Industrial Decarbonization: Theory and Evidence from South Korea</strong> — with coauthors (link)</li>
+          <li><strong>The Spatial Consequences of Industrial Environmental Regulation</strong> — Job Market Paper · <em>Upcoming soon</em></li>
+          <li>
+            <strong>Deep Industrial Decarbonization: Theory and Evidence from South Korea</strong> — with
+            <a href="https://arkolakis.com/" target="_blank" rel="noopener">Costas Arkolakis</a> and
+            <a href="https://sites.google.com/view/emmanuelmurrayleclair/home?authuser=0" target="_blank" rel="noopener">Emmanuel Murray Leclair</a>
+            · <em>Upcoming soon</em>
+          </li>
         </ul>
       </section>
 
       <section id="contact" class="card">
         <h2>Contact</h2>
         <p class="lead">Email: <a href="mailto:cheolhwan.kim@yale.edu">cheolhwan.kim@yale.edu</a></p>
-        <p><a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a> · <a href="https://github.com/cheolhwan-k" target="_blank" rel="noopener">GitHub</a></p>
       </section>
 
       <footer>
@@ -112,7 +107,6 @@
     </main>
   </div>
 
-  <!-- 5) Dark mode + utilities (no dependencies) -->
   <script>
     const root = document.documentElement;
     const key = 'prefers-dark';
