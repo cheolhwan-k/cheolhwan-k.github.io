@@ -25,7 +25,7 @@
 
     /* Left column (photo + links) */
     .sidebar{position:sticky; top:28px; align-self:start}
-    .avatar{width:120px; height:120px; border-radius:50%; object-fit:cover; border:1px solid var(--border); background:var(--card); display:block}
+    .avatar{width:168px; height:168px; border-radius:50%; object-fit:cover; border:1px solid var(--border); background:var(--card); display:block}
     .name{font-size:22px; font-weight:700; margin-top:14px}
     .tag{color:var(--muted); font-weight:500; line-height:1.35; margin-top:6px}
     .side-nav{margin-top:18px; display:flex; flex-direction:column; gap:10px}
@@ -52,7 +52,7 @@
       .sidebar{position:static}
       .side-nav{flex-direction:row; flex-wrap:wrap}
       .side-nav a{width:auto}
-      .avatar{width:96px; height:96px}
+      .avatar{width:128px; height:128px}
     }
       .teaching-cols{display:grid; grid-template-columns:1fr 1fr; gap:14px}
     section h3{font-size:16px; margin:12px 0 6px; color:var(--muted)}
@@ -79,14 +79,12 @@
 
       <!-- RIGHT COLUMN: content -->
       <main>
-        <header style="margin-bottom: 8px;">
-          <h1>About</h1>
-        </header>
-
-        <section id="bio" class="card">
-          <p class="lead">I am a PhD student in Economics at Yale University. My research focuses on environmental and spatial economics.</p>
-          <p class="lead">I am on the 2025/26 job market.</p>
-        </section>
+      
+      <section id="bio" class="card">
+        <h2>About</h2>
+        <p class="lead">I am a PhD student in Economics at Yale University. My research focuses on environmental and spatial economics.</p>
+        <p class="lead">I am on the 2025/26 job market.</p>
+      </section>
 
         <section id="cv" class="card">
           <h2>CV</h2>
