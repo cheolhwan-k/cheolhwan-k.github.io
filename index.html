@@ -27,7 +27,7 @@
 
     /* ---- Sidebar (left) ---- */
     .sidebar{position:sticky; top:28px; align-self:start}
-    .avatar{width:128px; height:128px; border-radius:50%; object-fit:cover; border:1px solid var(--border); background:var(--card); display:block; margin-bottom:12px}
+    .avatar{width:144px; height:144px; border-radius:50%; object-fit:cover; border:1px solid var(--border); background:var(--card); display:block; margin-bottom:12px}
     .name{font-size:24px; font-weight:600; line-height:1.15}
     .tag{color:var(--muted); margin-top:6px}
     .toolbar{margin-top:16px; display:flex; flex-direction:column; gap:10px}
@@ -52,7 +52,7 @@
     @media (max-width:860px){
       .layout{grid-template-columns:1fr}
       .sidebar{position:static}
-      .avatar{width:112px; height:112px}
+      .avatar{width:128px; height:128px}
     }
   </style>
 </head>
@@ -63,15 +63,15 @@
       <aside class="sidebar">
         <img class="avatar" src="profile.jpg" alt="Cheolhwan Kim" />
         <div class="name">Cheolhwan Kim</div>
-        <div class="tag">PhD Candidate in Economics  Yale University</div>
+        <div class="tag">PhD Candidate in Economics<br>Yale University</div>
 
-        <!-- Toolbar (quick links) -->
+        <!-- Toolbar (quick links) -> ordered to match content -->
         <nav class="toolbar" aria-label="Primary">
           <a class="pill" href="#overview">Overview</a>
+          <a class="pill" href="#cv">CV</a>
           <a class="pill" href="#research">Research</a>
           <a class="pill" href="#wip">Works in Progress</a>
           <a class="pill" href="#teaching">Teaching</a>
-          <a class="pill" href="#cv">CV</a>
           <a class="pill" href="#contact">Contact</a>
         </nav>
 
@@ -114,6 +114,10 @@
         <section id="wip">
           <h2>Works in Progress</h2>
           <ul>
+            <li class="paper">
+              <div class="paper-title">Powering Green Mobility: Pricing and Subsidy Pass-Through in EV Charging Networks</div>
+              <div class="paper-meta">— with <a href="https://sites.google.com/view/seungyongyoo" target="_blank" rel="noopener">Seung-Yong Yoo</a></div>
+            </li>
             <li class="paper">
               <div class="paper-title">An Anatomy of Multinational Production: Evidence from Affiliate Labor Composition</div>
               <div class="paper-meta">— with <a href="https://scholar.google.dk/citations?user=YJ81NNEAAAAJ&hl=en" target="_blank" rel="noopener">Shoki Kusaka</a> and
