@@ -13,143 +13,153 @@
     :root.dark{ --bg:#0b0b0b; --fg:#f1f1f1; --muted:#b8b8b8; --link:#69f0ae; --card:#121212; --border:#1f1f1f; }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0; background:var(--bg); color:var(--fg);
-      font:16px/1.6 Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    body{
+      margin:0; background:var(--bg); color:var(--fg);
+      font:16px/1.7 Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
       -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
     }
     a{color:var(--link); text-decoration:none}
     a:hover{text-decoration:underline}
 
-    .wrap{max-width:1400px; margin:0 auto; padding:28px 20px 80px}
-.layout{display:grid; grid-template-columns: 240px minmax(0, 1fr); gap:28px}
+    /* Single-column container */
+    .wrap{max-width:860px; margin:0 auto; padding:36px 20px 80px}
 
-    /* Left column (photo + links) */
-    .sidebar{position:sticky; top:28px; align-self:start}
-    .avatar{width:168px; height:168px; border-radius:50%; object-fit:cover; border:1px solid var(--border); background:var(--card); display:block}
-    .name{font-size:22px; font-weight:700; margin-top:14px}
-    .tag{color:var(--muted); font-weight:500; line-height:1.35; margin-top:6px}
-    .side-nav{margin-top:18px; display:flex; flex-direction:column; gap:10px}
-    .side-nav a{padding:6px 10px; border-radius:10px; border:1px solid var(--border); background:var(--card); width:max-content}
-    .toggle{margin-top:14px; border:1px solid var(--border); background:var(--card); color:var(--fg); padding:8px 12px; border-radius:10px; cursor:pointer}
+    /* Header (hero) */
+    header{display:flex; gap:18px; align-items:center; margin-bottom:26px}
+    .avatar{width:112px; height:112px; border-radius:50%; object-fit:cover; border:1px solid var(--border); background:var(--card); flex:0 0 auto}
+    .title{display:flex; flex-direction:column; gap:6px}
+    .name{font-size:28px; font-weight:700; line-height:1.1}
+    .tag{color:var(--muted)}
+    .links{display:flex; gap:12px; flex-wrap:wrap}
+    .pill{padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:var(--card); font-size:14px}
 
-    /* Right column content */
-    section{margin:26px 0}
-    h1{font-size:28px; line-height:1.1; margin:0 0 6px}
+    /* Sections */
+    section{margin:28px 0}
     section h2{font-size:20px; margin:0 0 10px}
-    .card{border:1px solid var(--border); background:var(--card); border-radius:16px; padding:18px}
-    .lead{font-size:15.5px}
-
+    .lead{font-size:16px}
+    ul{padding-left:18px; margin:0}
     .paper{margin:0 0 14px}
     .paper-title{font-weight:700}
     .paper-meta{color:var(--muted); font-size:14.5px; margin-top:4px}
 
-    footer{margin-top:42px; color:var(--muted); font-size:14px}
-    .flex{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
-    .spacer{flex:1}
+    footer{margin-top:42px; color:var(--muted); font-size:14px; display:flex; gap:10px; align-items:center; flex-wrap:wrap}
 
-    @media (max-width:860px){
-      .layout{grid-template-columns: 1fr}
-      .sidebar{position:static}
-      .side-nav{flex-direction:row; flex-wrap:wrap}
-      .side-nav a{width:auto}
-      .avatar{width:128px; height:128px}
+    /* Utilities */
+    .spacer{flex:1}
+    .topbar{display:flex; gap:10px; align-items:center; margin-bottom:12px}
+    .toggle{border:1px solid var(--border); background:var(--card); color:var(--fg); padding:8px 12px; border-radius:10px; cursor:pointer}
+
+    @media (max-width:600px){
+      header{flex-direction:row; align-items:center}
+      .avatar{width:96px; height:96px}
+      .name{font-size:24px}
     }
-      .teaching-cols{display:grid; grid-template-columns:1fr 1fr; gap:14px}
-    section h3{font-size:16px; margin:12px 0 6px; color:var(--muted)}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="layout">
-      <!-- LEFT COLUMN: photo + links -->
-      <aside class="sidebar">
-        <img class="avatar" src="profile.jpg" alt="Cheolhwan Kim" />
-        <div class="name">Cheolhwan Kim</div>
-        <div class="tag">PhD Candidate in Economics<br>Yale University</div>
-        <nav class="side-nav">
-          <a href="#bio">About</a>
-          <a href="#cv">CV</a>
-          <a href="#research">Research</a>
-          <a href="#wip">Work in Progress</a>
-          <a href="#teaching">Teaching</a>
-          <a href="#contact">Contact</a>
-        </nav>
-        <button class="toggle" id="themeToggle" aria-label="Toggle dark mode">Dark Mode</button>
-      </aside>
-
-      <!-- RIGHT COLUMN: content -->
-      <main>
-      
-      <section id="bio" class="card">
-        <h2>About</h2>
-        <p class="lead">I am a PhD student in Economics at Yale University. My research focuses on environmental and spatial economics.</p>
-        <p class="lead">I am on the 2025/26 job market.</p>
-      </section>
-
-        <section id="cv" class="card">
-          <h2>CV</h2>
-          <p>My CV is available <a href="Cheolhwan_Kim_CV.pdf" target="_blank" rel="noopener">here.</a></p>
-        </section>
-
-        <section id="research" class="card">
-          <h2>Research</h2>
-          <ul style="padding-left:18px">
-            <li class="paper">
-              <div class="paper-title"><strong>The Spatial Consequences of Industrial Environmental Regulation</strong></div>
-              <div class="paper-meta">— Job Market Paper · <em>Coming soon</em></div>
-            </li>
-            <li class="paper">
-              <div class="paper-title"><strong>Deep Industrial Decarbonization: Theory and Evidence from South Korea</strong></div>
-              <div class="paper-meta">— with <a href="https://arkolakis.com/" target="_blank" rel="noopener">Costas Arkolakis</a> and <a href="https://sites.google.com/view/emmanuelmurrayleclair/home?authuser=0" target="_blank" rel="noopener">Emmanuel Murray Leclair</a> · <em>Coming soon</em></div>
-            </li>
-          </ul>
-        </section>
-
-        <section id="wip" class="card">
-          <h2>Work in Progress</h2>
-          <ul style="padding-left:18px">
-            <li class="paper">
-              <div class="paper-title"><strong>An Anatomy of Multinational Production: Evidence from Affiliate Labor Composition</strong></div>
-              <div class="paper-meta">— with <a href="https://scholar.google.dk/citations?user=YJ81NNEAAAAJ&hl=en" target="_blank" rel="noopener">Shoki Kusaka</a> and <a href="https://sites.google.com/view/wei-xiang" target="_blank" rel="noopener">Wei Xiang</a></div>
-            </li>
-            <li class="paper">
-              <div class="paper-title"><strong>From Plants to Firms: Aligning Environmental Regulation with Firm‑Level Technology Choices</strong></div>
-            </li>
-          </ul>
-        </section>
-
-        <section id="teaching" class="card">
-          <h2>Teaching</h2>
-          <h3>Undergraduate</h3>
-          <ul style="padding-left:18px">
-            <li class="paper"><div class="paper-title"><strong>Fall 2024</strong></div><div class="paper-meta">Teaching Assistant, <em>International Finance</em>, Yale University (Ana Cecilia Fieler)</div></li>
-            <li class="paper"><div class="paper-title"><strong>Fall 2022</strong></div><div class="paper-meta">Teaching Assistant, <em>Introductory Macroeconomics</em>, Yale University (Giuseppe Moscarini &amp; Fabrizio Zilibotti)</div></li>
-            <li class="paper"><div class="paper-title"><strong>Spring/Fall 2018</strong></div><div class="paper-meta">Teaching Assistant, <em>Macroeconomics</em>, Seoul National University (Soyoung Kim)</div></li>
-          </ul>
-          <h3>Graduate</h3>
-          <ul style="padding-left:18px">
-            <li class="paper"><div class="paper-title"><strong>Spring 2023</strong></div><div class="paper-meta">Teaching Assistant, <em>Macroeconomics</em> (PhD), Yale University (Giuseppe Moscarini)</div></li>
-            <li class="paper"><div class="paper-title"><strong>Spring 2020</strong></div><div class="paper-meta">Teaching Assistant, <em>Recent Trends in Macroeconomics</em> (Graduate), Seoul National University (Soyoung Kim)</div></li>
-            <li class="paper"><div class="paper-title"><strong>Fall 2019</strong></div><div class="paper-meta">Teaching Assistant, <em>Advanced Macroeconomics</em> (Graduate), Seoul National University (Woong Yong Park)</div></li>
-            <li class="paper"><div class="paper-title"><strong>Spring 2019</strong></div><div class="paper-meta">Teaching Assistant, <em>Topics in International Monetary Economics</em> (Graduate), Seoul National University (Soyoung Kim)</div></li>
-          </ul>
-        </section>
-
-        <section id="contact" class="card">
-          <h2>Contact</h2>
-          <p class="lead">Email: <a href="mailto:cheolhwan.kim@yale.edu">cheolhwan.kim@yale.edu</a></p>
-          <p class="lead">Office: 27 Hillhouse Ave, New Haven, CT 06511</p>
-        </section>
-
-        <footer>
-          <div class="flex">
-            <div>© <span id="year"></span> · Cheolhwan Kim</div>
-            <div class="spacer"></div>
-            <div><a href="#" id="backToTop">Back to top ↑</a></div>
-          </div>
-        </footer>
-      </main>
+    <!-- Top bar: theme + CV quick link (optional) -->
+    <div class="topbar">
+      <button class="toggle" id="themeToggle" aria-label="Toggle dark mode">Dark Mode</button>
+      <a class="pill" href="#cv">CV</a>
+      <a class="pill" href="#contact">Contact</a>
+      <span class="spacer"></span>
     </div>
+
+    <!-- Hero -->
+    <header>
+      <img class="avatar" src="profile.jpg" alt="Cheolhwan Kim" />
+      <div class="title">
+        <div class="name">Cheolhwan Kim</div>
+        <div class="tag">PhD Candidate in Economics · Yale University</div>
+        <div class="links">
+          <a class="pill" href="#overview">Overview</a>
+          <a class="pill" href="#research">Research</a>
+          <a class="pill" href="#wip">Works in Progress</a>
+          <a class="pill" href="#teaching">Teaching</a>
+          <a class="pill" href="#contact">Contact</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Overview / About -->
+    <section id="overview">
+      <h2>Overview</h2>
+      <p class="lead">I am a PhD student in Economics at Yale University. My research focuses on environmental and spatial economics. I am on the 2025/26 job market.</p>
+      <p class="lead">
+        I explore topics at the intersection of spatial, environmental, and energy economics.
+        I combine reduced-form empirical strategies with structural modeling to examine how environmental policies reshape
+        pollution patterns and economic activity in the industrial, power generation, and transportation sectors across space and over time.
+      </p>
+    </section>
+
+    <!-- CV -->
+    <section id="cv">
+      <h2>CV</h2>
+      <p>My CV is available <a href="Cheolhwan_Kim_CV.pdf" target="_blank" rel="noopener">here.</a></p>
+    </section>
+
+    <!-- Research (like Publications/Working Papers) -->
+    <section id="research">
+      <h2>Research</h2>
+      <ul>
+        <li class="paper">
+          <div class="paper-title"><strong>The Spatial Consequences of Industrial Environmental Regulation</strong></div>
+          <div class="paper-meta">— Job Market Paper · <em>Coming soon</em></div>
+        </li>
+        <li class="paper">
+          <div class="paper-title"><strong>Deep Industrial Decarbonization: Theory and Evidence from South Korea</strong></div>
+          <div class="paper-meta">— with <a href="https://arkolakis.com/" target="_blank" rel="noopener">Costas Arkolakis</a> and
+            <a href="https://sites.google.com/view/emmanuelmurrayleclair/home?authuser=0" target="_blank" rel="noopener">Emmanuel Murray Leclair</a> · <em>Coming soon</em></div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Works in Progress -->
+    <section id="wip">
+      <h2>Works in Progress</h2>
+      <ul>
+        <li class="paper">
+          <div class="paper-title"><strong>An Anatomy of Multinational Production: Evidence from Affiliate Labor Composition</strong></div>
+          <div class="paper-meta">— with <a href="https://scholar.google.dk/citations?user=YJ81NNEAAAAJ&hl=en" target="_blank" rel="noopener">Shoki Kusaka</a> and
+            <a href="https://sites.google.com/view/wei-xiang" target="_blank" rel="noopener">Wei Xiang</a></div>
+        </li>
+        <li class="paper">
+          <div class="paper-title"><strong>From Plants to Firms: Aligning Environmental Regulation with Firm-Level Technology Choices</strong></div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Teaching -->
+    <section id="teaching">
+      <h2>Teaching</h2>
+      <h3>Undergraduate</h3>
+      <ul>
+        <li class="paper"><div class="paper-title"><strong>Fall 2024</strong></div><div class="paper-meta">Teaching Assistant, <em>International Finance</em>, Yale University (Ana Cecilia Fieler)</div></li>
+        <li class="paper"><div class="paper-title"><strong>Fall 2022</strong></div><div class="paper-meta">Teaching Assistant, <em>Introductory Macroeconomics</em>, Yale University (Giuseppe Moscarini &amp; Fabrizio Zilibotti)</div></li>
+        <li class="paper"><div class="paper-title"><strong>Spring/Fall 2018</strong></div><div class="paper-meta">Teaching Assistant, <em>Macroeconomics</em>, Seoul National University (Soyoung Kim)</div></li>
+      </ul>
+      <h3>Graduate</h3>
+      <ul>
+        <li class="paper"><div class="paper-title"><strong>Spring 2023</strong></div><div class="paper-meta">Teaching Assistant, <em>Macroeconomics</em> (PhD), Yale University (Giuseppe Moscarini)</div></li>
+        <li class="paper"><div class="paper-title"><strong>Spring 2020</strong></div><div class="paper-meta">Teaching Assistant, <em>Recent Trends in Macroeconomics</em> (Graduate), Seoul National University (Soyoung Kim)</div></li>
+        <li class="paper"><div class="paper-title"><strong>Fall 2019</strong></div><div class="paper-meta">Teaching Assistant, <em>Advanced Macroeconomics</em> (Graduate), Seoul National University (Woong Yong Park)</div></li>
+        <li class="paper"><div class="paper-title"><strong>Spring 2019</strong></div><div class="paper-meta">Teaching Assistant, <em>Topics in International Monetary Economics</em> (Graduate), Seoul National University (Soyoung Kim)</div></li>
+      </ul>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <p class="lead">Email: <a href="mailto:cheolhwan.kim@yale.edu">cheolhwan.kim@yale.edu</a></p>
+      <p class="lead">Office: 27 Hillhouse Ave, New Haven, CT 06511</p>
+    </section>
+
+    <footer>
+      <div>© <span id="year"></span> · Cheolhwan Kim</div>
+      <div class="spacer"></div>
+      <div><a href="#" id="backToTop">Back to top ↑</a></div>
+    </footer>
   </div>
 
   <script>
