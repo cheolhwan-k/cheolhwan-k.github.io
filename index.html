@@ -1,323 +1,536 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Cheolhwan Kim</title>
   <meta name="description" content="Cheolhwan Kim — PhD Candidate in Economics at Yale University" />
 
+  <!-- Fonts used to match the reference site's academic layout -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Merriweather:300|Raleway:400,500,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --text: #111;
-      --muted: #555;
-      --link: #0645ad;
-      --border: #ddd;
       --bg: #fff;
+      --fg: #111;
+      --link: #039827;
+      --link-dark: #02661E;
+      --line-style: 1px solid #ddd;
+      --muted: #666;
+      --font-base: 1rem;
+      --font-small: 0.95rem;
+      --font-smaller: 0.85rem;
+      --font-xl: 1.3rem;
+      --font-weight-base: 400;
+      --font-weight-semibold: 600;
+    }
+
+    [data-theme="dark"] {
+      --bg: #171717;
+      --fg: #f6f6f6;
+      --link: #66aaff;
+      --link-dark: #3388DD;
+      --muted: #aaa;
+      --line-style: 1px solid #333;
     }
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      overflow-y: scroll;
+      scrollbar-gutter: stable both-edges;
     }
 
     body {
-      margin: 0;
+      font-family: "Raleway", sans-serif;
       background: var(--bg);
-      color: var(--text);
-      font-family: Georgia, "Times New Roman", Times, serif;
-      font-size: 16px;
-      line-height: 1.55;
+      color: var(--fg);
+      line-height: 1.6;
+      font-size: var(--font-base);
+      font-weight: var(--font-weight-base);
     }
 
-    .page {
-      max-width: 820px;
-      margin: 0 auto;
-      padding: 42px 22px 70px;
+    .container {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      max-width: 1150px;
+      margin: 2rem auto;
+      gap: 2rem;
+      padding: 0 3rem;
     }
 
-    header {
-      margin-bottom: 28px;
-    }
-
-    .top {
+    /* Sidebar */
+    .sidebar {
       display: flex;
-      gap: 24px;
-      align-items: flex-start;
-      margin-bottom: 18px;
+      flex-direction: column;
+      align-items: center;
+      position: sticky;
+      top: 2rem;
+      margin-bottom: auto;
+      text-align: center;
     }
 
-    .photo {
-      width: 150px;
-      height: 150px;
+    .profile-wrap {
+      width: 200px;
+      height: 200px;
+      margin-top: 5.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .profile-img,
+    .profile-placeholder {
+      width: 200px;
+      height: 200px;
+      border-radius: 35%;
       object-fit: cover;
-      border-radius: 3px;
-      border: 1px solid var(--border);
-      flex: 0 0 auto;
     }
 
-    h1 {
-      font-size: 32px;
-      font-weight: normal;
-      margin: 0 0 8px;
-      line-height: 1.15;
+    .profile-placeholder {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: #f1f1f1;
+      color: #777;
+      font-size: 2rem;
+      border: 1px solid #ddd;
     }
 
-    .subtitle {
-      margin: 0 0 10px;
+    [data-theme="dark"] .profile-placeholder {
+      background: #242424;
+      color: #aaa;
+      border-color: #333;
+    }
+
+    .name {
+      font-size: var(--font-xl);
+      margin-bottom: 0.2rem;
+      font-weight: var(--font-weight-base);
+    }
+
+    .affiliation {
       color: var(--muted);
+      margin-bottom: 1rem;
     }
 
-    .links {
-      margin-top: 8px;
-    }
-
-    .links a {
-      margin-right: 12px;
-    }
-
-    nav {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 8px 0;
-      margin: 22px 0 26px;
-      font-size: 15px;
-    }
-
-    nav a {
-      margin-right: 16px;
-      white-space: nowrap;
-    }
-
-    section {
-      margin-bottom: 28px;
-    }
-
-    h2 {
-      font-size: 22px;
-      font-weight: normal;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 4px;
-      margin: 0 0 12px;
-    }
-
-    h3 {
-      font-size: 17px;
-      font-weight: normal;
+    .sidebar-footer {
+      margin-top: 0;
       color: var(--muted);
-      margin: 16px 0 6px;
+      font-size: var(--font-smaller);
     }
 
-    p {
-      margin: 0 0 12px;
+    .theme-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.3rem;
+      user-select: none;
     }
 
-    ul {
-      margin: 0;
-      padding-left: 22px;
+    .switch-label {
+      font-size: var(--font-smaller);
+      color: var(--fg);
     }
 
-    li {
-      margin-bottom: 11px;
+    .switch-slider {
+      position: relative;
+      width: 25px;
+      height: 16px;
+      background: #ccc;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.3s;
     }
 
-    a {
+    .switch-slider::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 12px;
+      height: 12px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+
+    .switch-slider.active {
+      background: var(--link);
+    }
+
+    .switch-slider.active::before {
+      transform: translateX(8.5px);
+    }
+
+    /* Main content */
+    .content {
+      min-width: 0;
+    }
+
+    .content h1,
+    .content h2 {
+      font-size: var(--font-xl);
+      margin-bottom: 1rem;
+      font-weight: var(--font-weight-base);
+    }
+
+    .content h2 {
+      padding-bottom: 0.3rem;
+      margin-top: 2.5rem;
+      border-bottom: var(--line-style);
+    }
+
+    .content p {
+      margin-bottom: 1rem;
+    }
+
+    .content a {
       color: var(--link);
       text-decoration: none;
     }
 
-    a:hover {
+    .content a:hover {
       text-decoration: underline;
+      color: var(--link-dark);
+    }
+
+    .paper-block {
+      margin-bottom: 1rem;
+    }
+
+    .paper-line {
+      margin-bottom: 0.25rem;
     }
 
     .paper-title {
-      font-weight: normal;
+      font-weight: var(--font-weight-base);
     }
 
-    .paper-meta {
+    .author {
+      color: var(--fg);
+      text-decoration: none;
+    }
+
+    .author:hover {
+      color: var(--fg);
+      text-decoration: underline;
+    }
+
+    .detail {
       color: var(--muted);
-      font-size: 15px;
-      margin-top: 2px;
+      font-style: italic;
+      font-size: var(--font-small);
+      margin-right: 0.2rem;
     }
 
-    .note {
+    .file,
+    .coming-soon {
+      color: var(--link);
+      text-decoration: none;
+      font-size: var(--font-small);
+    }
+
+    .coming-soon {
       color: var(--muted);
-      font-size: 15px;
     }
 
-    footer {
-      margin-top: 38px;
-      padding-top: 12px;
-      border-top: 1px solid var(--border);
+    .delimiter {
+      margin: 0 0.15rem;
+      color: var(--link);
+    }
+
+    .abstract-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.3s ease;
+      opacity: 0;
+      margin-top: 0.45rem;
+      font-size: var(--font-smaller);
+      font-family: "Open Sans", sans-serif;
+      font-weight: 300;
+    }
+
+    .abstract-content.open {
+      max-height: 500px;
+      opacity: 1;
+    }
+
+    .abstract-content p {
+      text-align: justify;
+      margin-bottom: 0.75rem;
+    }
+
+    .abstract-toggle {
+      position: relative;
+      display: inline-block;
+      text-decoration: none;
+      color: var(--link);
+      font-size: var(--font-small);
+      cursor: pointer;
+      border: 0;
+      background: transparent;
+      font-family: inherit;
+      padding: 0;
+    }
+
+    .abstract-toggle:hover {
+      color: var(--link-dark);
+      text-decoration: underline;
+    }
+
+    .chevron {
+      font-size: 0.55rem;
+      display: inline-block;
+      margin-left: 0.15rem;
+      transition: transform 0.25s ease;
+    }
+
+    .abstract-toggle.open .chevron {
+      transform: rotate(180deg);
+    }
+
+    .teaching-list {
+      list-style: disc inside;
+      margin-bottom: 1rem;
+    }
+
+    .teaching-list li {
+      margin-bottom: 0.35rem;
+    }
+
+    .subheading {
       color: var(--muted);
-      font-size: 14px;
+      font-size: var(--font-small);
+      margin-top: 1rem;
+      margin-bottom: 0.35rem;
+      font-weight: var(--font-weight-base);
     }
 
-    @media (max-width: 650px) {
-      .top {
-        display: block;
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+        margin: 1rem auto;
       }
 
-      .photo {
-        width: 130px;
-        height: 130px;
-        margin-bottom: 14px;
+      .sidebar {
+        position: relative;
+        top: auto;
+        flex-basis: 0;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0;
+        padding: 1rem;
+        border-bottom: var(--line-style);
       }
 
-      h1 {
-        font-size: 28px;
+      .profile-wrap,
+      .profile-img,
+      .profile-placeholder {
+        width: 80px;
+        height: 80px;
       }
 
-      nav a {
-        display: inline-block;
-        margin-bottom: 4px;
+      .profile-wrap {
+        margin: 0;
+      }
+
+      .name,
+      .affiliation {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 0;
+      }
+
+      .theme-switch,
+      .sidebar-footer {
+        display: none;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .container {
+        margin: 0.5rem auto;
+        padding: 0 1.5rem;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="page">
-    <header>
-      <div class="top">
-        <img class="photo" src="profile.jpg" alt="Cheolhwan Kim" />
+  <div class="container">
+    <aside class="sidebar">
+      <div class="profile-wrap">
+        <img
+          src="profile.jpg"
+          alt="Profile"
+          class="profile-img"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="profile-placeholder">CK</div>
+      </div>
 
-        <div>
-          <h1>Cheolhwan Kim</h1>
+      <h2 class="name">Cheolhwan Kim</h2>
+      <p class="affiliation">PhD Candidate in Economics<br>Yale University</p>
 
-          <p class="subtitle">
-            PhD Candidate in Economics<br />
-            Yale University
-          </p>
+      <footer class="sidebar-footer">
+        <p>© <span id="year">2026</span></p>
+      </footer>
 
-          <p>
-            I am a PhD student in Economics at Yale University. I am on the 2025/26 job market.
-          </p>
+      <p class="theme-switch">
+        <span class="switch-label">Dark Mode</span>
+        <span class="switch-slider" id="theme-switch" role="button" tabindex="0" aria-label="Toggle dark mode"></span>
+      </p>
+    </aside>
 
-          <p class="links">
-            <a href="Cheolhwan_Kim_CV.pdf" target="_blank" rel="noopener">CV</a>
-            <a href="mailto:cheolhwan.kim@yale.edu">Email</a>
-          </p>
+    <main class="content">
+      <h1>About Me</h1>
+
+      <p>
+        I am a PhD student in Economics at Yale University. I am on the 2025/26 job market.
+      </p>
+
+      <p>
+        I explore topics at the intersection of spatial, environmental, and energy economics.
+        I combine reduced-form empirical strategies with structural modeling to examine how environmental policies reshape
+        pollution patterns and economic activity in the industrial, power generation, and transportation sectors across space and over time.
+      </p>
+
+      <p>
+        Email: <a href="mailto:cheolhwan.kim@yale.edu">cheolhwan.kim@yale.edu</a>
+        <br>
+        My CV is available <a href="Cheolhwan_Kim_CV.pdf" target="_blank" rel="noopener">here</a>.
+        <br>
+        Office: 27 Hillhouse Ave, New Haven, CT 06511
+      </p>
+
+      <h2>Working Papers</h2>
+
+      <div class="paper-block WP">
+        <p class="paper-line">
+          <span class="paper-title">The Spatial Consequences of Industrial Environmental Regulation</span>
+          <br>
+          <span class="detail">Job Market Paper</span>
+          <span class="coming-soon">[paper coming soon]</span>
+          <span class="delimiter">•</span>
+          <button class="abstract-toggle" type="button" aria-expanded="false">
+            [abstract <span class="chevron">⌄</span>]
+          </button>
+        </p>
+        <div class="abstract-content">
+          <p>Abstract coming soon.</p>
         </div>
       </div>
 
-      <nav aria-label="Navigation">
-        <a href="#research">Research</a>
-        <a href="#wip">Works in Progress</a>
-        <a href="#teaching">Teaching</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
-
-    <main>
-      <section id="about">
-        <h2>About</h2>
-
-        <p>
-          I explore topics at the intersection of spatial, environmental, and energy economics.
-          I combine reduced-form empirical strategies with structural modeling to examine how
-          environmental policies reshape pollution patterns and economic activity in the industrial,
-          power generation, and transportation sectors across space and over time.
+      <div class="paper-block WP">
+        <p class="paper-line">
+          <span class="paper-title">Deep Industrial Decarbonization: Theory and Evidence from South Korea</span>,
+          with
+          <a class="author" href="https://arkolakis.com/" target="_blank" rel="noopener">Costas Arkolakis</a>
+          and
+          <a class="author" href="https://sites.google.com/view/emmanuelmurrayleclair/home?authuser=0" target="_blank" rel="noopener">Emmanuel Murray Leclair</a>
+          <br>
+          <span class="coming-soon">[paper coming soon]</span>
+          <span class="delimiter">•</span>
+          <button class="abstract-toggle" type="button" aria-expanded="false">
+            [abstract <span class="chevron">⌄</span>]
+          </button>
         </p>
-      </section>
+        <div class="abstract-content">
+          <p>Abstract coming soon.</p>
+        </div>
+      </div>
 
-      <section id="research">
-        <h2>Research</h2>
+      <h2>Work in Progress</h2>
 
-        <ul>
-          <li>
-            <div class="paper-title">
-              The Spatial Consequences of Industrial Environmental Regulation
-            </div>
-            <div class="paper-meta">
-              Job Market Paper. Coming soon.
-            </div>
-          </li>
-
-          <li>
-            <div class="paper-title">
-              Deep Industrial Decarbonization: Theory and Evidence from South Korea
-            </div>
-            <div class="paper-meta">
-              with
-              <a href="https://arkolakis.com/" target="_blank" rel="noopener">Costas Arkolakis</a>
-              and
-              <a href="https://sites.google.com/view/emmanuelmurrayleclair/home?authuser=0" target="_blank" rel="noopener">Emmanuel Murray Leclair</a>.
-              Coming soon.
-            </div>
-          </li>
-        </ul>
-      </section>
-
-      <section id="wip">
-        <h2>Works in Progress</h2>
-
-        <ul>
-          <li>
-            <div class="paper-title">
-              Powering Green Mobility: Pricing and Subsidy Pass-Through in EV Charging Networks
-            </div>
-            <div class="paper-meta">
-              with
-              <a href="https://sites.google.com/view/seungyongyoo" target="_blank" rel="noopener">Seung-Yong Yoo</a>.
-            </div>
-          </li>
-
-          <li>
-            <div class="paper-title">
-              An Anatomy of Multinational Production: Evidence from Affiliate Labor Composition
-            </div>
-            <div class="paper-meta">
-              with
-              <a href="https://scholar.google.dk/citations?user=YJ81NNEAAAAJ&hl=en" target="_blank" rel="noopener">Shoki Kusaka</a>
-              and
-              <a href="https://sites.google.com/view/wei-xiang" target="_blank" rel="noopener">Wei Xiang</a>.
-            </div>
-          </li>
-
-          <li>
-            <div class="paper-title">
-              From Plants to Firms: Aligning Environmental Regulation with Firm-Level Technology Choices
-            </div>
-          </li>
-        </ul>
-      </section>
-
-      <section id="teaching">
-        <h2>Teaching</h2>
-
-        <h3>Undergraduate</h3>
-        <ul>
-          <li>Fall 2024 — Teaching Assistant, <em>International Finance</em>, Yale University.</li>
-          <li>Fall 2022 — Teaching Assistant, <em>Introductory Macroeconomics</em>, Yale University.</li>
-          <li>Spring/Fall 2018 — Teaching Assistant, <em>Macroeconomics</em>, Seoul National University.</li>
-        </ul>
-
-        <h3>Graduate</h3>
-        <ul>
-          <li>Spring 2023 — Teaching Assistant, <em>Macroeconomics</em> (PhD), Yale University.</li>
-          <li>Spring 2020 — Teaching Assistant, <em>Recent Trends in Macroeconomics</em> (Graduate), Seoul National University.</li>
-          <li>Fall 2019 — Teaching Assistant, <em>Advanced Macroeconomics</em> (Graduate), Seoul National University.</li>
-          <li>Spring 2019 — Teaching Assistant, <em>Topics in International Monetary Economics</em> (Graduate), Seoul National University.</li>
-        </ul>
-      </section>
-
-      <section id="contact">
-        <h2>Contact</h2>
-
-        <p>
-          Email:
-          <a href="mailto:cheolhwan.kim@yale.edu">cheolhwan.kim@yale.edu</a>
+      <div class="paper-block WIP">
+        <p class="paper-line">
+          <span class="paper-title">Powering Green Mobility: Pricing and Subsidy Pass-Through in EV Charging Networks</span>,
+          with
+          <a class="author" href="https://sites.google.com/view/seungyongyoo" target="_blank" rel="noopener">Seung-Yong Yoo</a>
         </p>
+      </div>
 
-        <p>
-          Office: 27 Hillhouse Ave, New Haven, CT 06511
+      <div class="paper-block WIP">
+        <p class="paper-line">
+          <span class="paper-title">An Anatomy of Multinational Production: Evidence from Affiliate Labor Composition</span>,
+          with
+          <a class="author" href="https://scholar.google.dk/citations?user=YJ81NNEAAAAJ&hl=en" target="_blank" rel="noopener">Shoki Kusaka</a>
+          and
+          <a class="author" href="https://sites.google.com/view/wei-xiang" target="_blank" rel="noopener">Wei Xiang</a>
         </p>
-      </section>
+      </div>
+
+      <div class="paper-block WIP">
+        <p class="paper-line">
+          <span class="paper-title">From Plants to Firms: Aligning Environmental Regulation with Firm-Level Technology Choices</span>
+        </p>
+      </div>
+
+      <h2>Teaching</h2>
+
+      <p class="subheading">Undergraduate</p>
+      <ul class="teaching-list">
+        <li>Fall 2024 — Teaching Assistant, <em>International Finance</em>, Yale University</li>
+        <li>Fall 2022 — Teaching Assistant, <em>Introductory Macroeconomics</em>, Yale University</li>
+        <li>Spring/Fall 2018 — Teaching Assistant, <em>Macroeconomics</em>, Seoul National University</li>
+      </ul>
+
+      <p class="subheading">Graduate</p>
+      <ul class="teaching-list">
+        <li>Spring 2023 — Teaching Assistant, <em>Macroeconomics</em> (PhD), Yale University</li>
+        <li>Spring 2020 — Teaching Assistant, <em>Recent Trends in Macroeconomics</em> (Graduate), Seoul National University</li>
+        <li>Fall 2019 — Teaching Assistant, <em>Advanced Macroeconomics</em> (Graduate), Seoul National University</li>
+        <li>Spring 2019 — Teaching Assistant, <em>Topics in International Monetary Economics</em> (Graduate), Seoul National University</li>
+      </ul>
     </main>
-
-    <footer>
-      © 2026 Cheolhwan Kim
-    </footer>
   </div>
+
+  <script>
+    const slider = document.getElementById('theme-switch');
+    const root = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    const systemPrefDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const isDark = saved === 'dark' || (saved === null && systemPrefDark);
+
+    function setTheme(isDarkMode) {
+      root.dataset.theme = isDarkMode ? 'dark' : 'light';
+      slider.classList.toggle('active', isDarkMode);
+      localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    }
+
+    setTheme(isDark);
+
+    slider.addEventListener('click', () => {
+      setTheme(root.dataset.theme !== 'dark');
+    });
+
+    slider.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        setTheme(root.dataset.theme !== 'dark');
+      }
+    });
+
+    document.querySelectorAll('.abstract-toggle').forEach((button) => {
+      button.addEventListener('click', () => {
+        const block = button.closest('.paper-block');
+        const abstract = block.querySelector('.abstract-content');
+        const isOpen = abstract.classList.toggle('open');
+
+        button.classList.toggle('open', isOpen);
+        button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
