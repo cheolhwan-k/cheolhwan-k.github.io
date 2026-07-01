@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Teaching — Cheolhwan Kim</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Merriweather:300|Raleway:400,500,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #fff;
+      --fg: #111;
+      --link: #039827;
+      --link-dark: #02661E;
+      --line-style: 1px solid #ddd;
+      --muted: #666;
+      --font-base: 1rem;
+      --font-small: 0.95rem;
+      --font-smaller: 0.85rem;
+      --font-xl: 1.3rem;
+      --font-weight-base: 400;
+    }
+
+    [data-theme="dark"] {
+      --bg: #171717;
+      --fg: #f6f6f6;
+      --link: #66aaff;
+      --link-dark: #3388DD;
+      --muted: #aaa;
+      --line-style: 1px solid #333;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      overflow-y: scroll;
+      scrollbar-gutter: stable both-edges;
+    }
+
+    body {
+      font-family: "Raleway", sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+      font-size: var(--font-base);
+      font-weight: var(--font-weight-base);
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      max-width: 1150px;
+      margin: 2rem auto;
+      gap: 2rem;
+      padding: 0 3rem;
+    }
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: sticky;
+      top: 2rem;
+      margin-bottom: auto;
+      text-align: center;
+    }
+
+    .profile-wrap {
+      width: 200px;
+      height: 200px;
+      margin-top: 5.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .profile-img,
+    .profile-placeholder {
+      width: 200px;
+      height: 200px;
+      border-radius: 35%;
+      object-fit: cover;
+    }
+
+    .profile-placeholder {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: #f1f1f1;
+      color: #777;
+      font-size: 2rem;
+      border: 1px solid #ddd;
+    }
+
+    [data-theme="dark"] .profile-placeholder {
+      background: #242424;
+      color: #aaa;
+      border-color: #333;
+    }
+
+    .name {
+      font-size: var(--font-xl);
+      margin-bottom: 0.2rem;
+      font-weight: var(--font-weight-base);
+    }
+
+    .affiliation {
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .sidebar-footer {
+      margin-top: 0;
+      color: var(--muted);
+      font-size: var(--font-smaller);
+    }
+
+    .theme-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.3rem;
+      user-select: none;
+    }
+
+    .switch-label {
+      font-size: var(--font-smaller);
+      color: var(--fg);
+    }
+
+    .switch-slider {
+      position: relative;
+      width: 25px;
+      height: 16px;
+      background: #ccc;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .switch-slider::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 12px;
+      height: 12px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+
+    .switch-slider.active {
+      background: var(--link);
+    }
+
+    .switch-slider.active::before {
+      transform: translateX(8.5px);
+    }
+
+    .content {
+      min-width: 0;
+    }
+
+    .content h1,
+    .content h2 {
+      font-size: var(--font-xl);
+      margin-bottom: 1rem;
+      font-weight: var(--font-weight-base);
+    }
+
+    .content h2 {
+      padding-bottom: 0.3rem;
+      margin-top: 2.5rem;
+      border-bottom: var(--line-style);
+    }
+
+    .content p {
+      margin-bottom: 1rem;
+    }
+
+    .content a {
+      color: var(--link);
+      text-decoration: none;
+    }
+
+    .content a:hover {
+      text-decoration: underline;
+      color: var(--link-dark);
+    }
+
+    .teaching-list {
+      list-style: disc inside;
+      margin-bottom: 1rem;
+    }
+
+    .teaching-list li {
+      margin-bottom: 0.35rem;
+    }
+
+    .subheading {
+      color: var(--muted);
+      font-size: var(--font-small);
+      margin-top: 1rem;
+      margin-bottom: 0.35rem;
+      font-weight: var(--font-weight-base);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+        margin: 1rem auto;
+      }
+
+      .sidebar {
+        position: relative;
+        top: auto;
+        padding: 1rem;
+        border-bottom: var(--line-style);
+      }
+
+      .profile-wrap,
+      .profile-img,
+      .profile-placeholder {
+        width: 80px;
+        height: 80px;
+      }
+
+      .profile-wrap {
+        margin: 0;
+      }
+
+      .name,
+      .affiliation {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 0;
+      }
+
+      .theme-switch,
+      .sidebar-footer {
+        display: none;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .container {
+        margin: 0.5rem auto;
+        padding: 0 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="profile-wrap">
+        <img
+          src="profile.jpg"
+          alt="Profile"
+          class="profile-img"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="profile-placeholder">CK</div>
+      </div>
+
+      <h2 class="name">Cheolhwan Kim</h2>
+      <p class="affiliation">PhD Candidate in Economics<br>Yale University</p>
+
+      <footer class="sidebar-footer">
+        <p>© <span id="year">2026</span></p>
+      </footer>
+
+      <p class="theme-switch">
+        <span class="switch-label">Dark Mode</span>
+        <span class="switch-slider" id="theme-switch" role="button" tabindex="0" aria-label="Toggle dark mode"></span>
+      </p>
+    </aside>
+
+    <main class="content">
+      <h1>Teaching</h1>
+
+      <p>
+        <a href="index.html">← Back to home</a>
+      </p>
+
+      <h2>Undergraduate</h2>
+      <ul class="teaching-list">
+        <li>Spring 2026 — Teaching Assistant, <em>Introductory Macroeconomics</em>, Yale University</li>
+        <li>Fall 2024 — Teaching Assistant, <em>International Finance</em>, Yale University</li>
+        <li>Fall 2022 — Teaching Assistant, <em>Introductory Macroeconomics</em>, Yale University</li>
+        <li>Spring/Fall 2018 — Teaching Assistant, <em>Macroeconomics</em>, Seoul National University</li>
+      </ul>
+
+      <h2>Graduate</h2>
+      <ul class="teaching-list">
+        <li>Spring 2023 — Teaching Assistant, <em>Macroeconomics</em> (PhD), Yale University</li>
+        <li>Spring 2020 — Teaching Assistant, <em>Recent Trends in Macroeconomics</em> (Graduate), Seoul National University</li>
+        <li>Fall 2019 — Teaching Assistant, <em>Advanced Macroeconomics</em> (Graduate), Seoul National University</li>
+        <li>Spring 2019 — Teaching Assistant, <em>Topics in International Monetary Economics</em> (Graduate), Seoul National University</li>
+      </ul>
+    </main>
+  </div>
+
+  <script>
+    const slider = document.getElementById('theme-switch');
+    const root = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    const systemPrefDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const isDark = saved === 'dark' || (saved === null && systemPrefDark);
+
+    function setTheme(isDarkMode) {
+      root.dataset.theme = isDarkMode ? 'dark' : 'light';
+      slider.classList.toggle('active', isDarkMode);
+      localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    }
+
+    setTheme(isDark);
+
+    slider.addEventListener('click', () => {
+      setTheme(root.dataset.theme !== 'dark');
+    });
+
+    slider.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        setTheme(root.dataset.theme !== 'dark');
+      }
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
