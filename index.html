@@ -75,22 +75,23 @@
       text-align: center;
     }
 
-    .profile-wrap {
-      width: 200px;
-      height: 200px;
-      margin-top: 5.5rem;
-      margin-bottom: 1rem;
-      position: relative;
+    .container {
+      grid-template-columns: 250px 1fr;
     }
-
+    
+    .profile-wrap {
+      width: 230px;
+      height: 230px;
+    }
+    
     .profile-img,
     .profile-placeholder {
-      width: 200px;
-      height: 200px;
-      border-radius: 35%;
+      width: 230px;
+      height: 230px;
+      border-radius: 0;
       object-fit: cover;
     }
-
+       
     .profile-placeholder {
       display: none;
       align-items: center;
@@ -540,7 +541,7 @@
     const root = document.documentElement;
     const saved = localStorage.getItem('theme');
     const systemPrefDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const isDark = saved === 'dark' || (saved === null && systemPrefDark);
+    const isDark = saved === 'dark';
 
     function setTheme(isDarkMode) {
       root.dataset.theme = isDarkMode ? 'dark' : 'light';
